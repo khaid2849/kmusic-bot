@@ -1,0 +1,97 @@
+###############################################################
+# Config for the Python Discord Music Bot                     #
+# Copy this file to config.toml and fill in your values.     #
+# Lines starting with # are comments.                         #
+###############################################################
+
+# Bot token — REQUIRED
+# https://discord.com/developers/applications
+token = "BOT_TOKEN_HERE"
+
+# Bot owner Discord user ID — REQUIRED
+owner = 0
+
+# Command prefix. Use "@mention" to require @mentioning the bot.
+prefix = "@mention"
+
+# Alternative prefix (set to "NONE" to disable)
+altprefix = "NONE"
+
+# Bot activity. Examples:
+#   "playing Music"
+#   "listening to Beats"
+#   "watching YouTube"
+#   "DEFAULT" (uses built-in default)
+#   "none" (no activity)
+game = "DEFAULT"
+
+# Online status: online, idle, dnd, invisible
+status = "online"
+
+# Show current song title in bot status (only works when in 1 guild)
+song_in_status = false
+
+# Emoji used in responses
+success  = "🎶"
+warning  = "💡"
+error    = "🚫"
+loading  = "⌚"
+searching = "🔎"
+
+# Word used to trigger help (e.g. !help)
+help = "help"
+
+# Show YouTube thumbnails in nowplaying embed (disables auto-refresh)
+np_images = false
+
+# Stay in voice channel after queue ends
+stay_in_channel = false
+
+# Maximum track length in seconds (0 = no limit)
+max_time = 0
+
+# Maximum YouTube playlist pages to load (each page = up to 100 tracks)
+max_yt_playlist_pages = 10
+
+# Default vote-skip ratio (0.0 to 1.0)
+skip_ratio = 0.55
+
+# Seconds bot waits alone in voice before leaving (0 = never)
+alone_time_until_stop = 0
+
+# Folder for local playlists
+playlists_folder = "Playlists"
+
+# DM owner when a new bot version is available
+update_alerts = true
+
+# Logging level: debug, info, warning, error
+log_level = "info"
+
+# Per-command aliases
+[aliases]
+settings   = ["status"]
+nowplaying = ["np", "current"]
+playlists  = ["pls"]
+queue      = ["list"]
+remove     = ["delete"]
+search     = ["ytsearch"]
+skip       = ["voteskip"]
+prefix     = ["setprefix"]
+setdj      = []
+skipratio  = ["setskippercent", "skippercent", "setskipratio"]
+settc      = []
+setvc      = []
+forceremove = ["forcedelete", "modremove"]
+forceskip  = ["modskip"]
+movetrack  = ["move"]
+pause      = []
+playnext   = []
+queuetype  = []
+repeat     = []
+skipto     = ["jumpto"]
+stop       = ["leave"]
+volume     = ["vol"]
+
+# URL transforms (advanced — leave empty unless you know what you're doing)
+[transforms]

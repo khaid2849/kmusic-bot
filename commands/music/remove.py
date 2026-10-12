@@ -9,11 +9,11 @@ if TYPE_CHECKING:
     from bot import MusicBot
 
 
-class RemoveCog(commands.Cog, name="Music"):
+class RemoveCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="remove", aliases=["delete"], help="Removes a song from the queue by position")
+    @commands.command(name="remove", usage="<position>", aliases=["delete"], help="Removes a song from the queue by position")
     @commands.guild_only()
     async def remove(self, ctx: commands.Context, position: int = 0) -> None:
         if not await music_check(ctx, be_listening=True):

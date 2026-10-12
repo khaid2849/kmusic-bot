@@ -3,6 +3,10 @@ server:
   address: 127.0.0.1
 
 lavalink:
+  plugins:
+    # Snapshot build: includes the TV client user-agent fix not yet in a release (youtube-source #226)
+    - dependency: "dev.lavalink.youtube:youtube-plugin:2be8e542d3f6f178e048dca565892684c2e40177"
+      snapshot: true
   server:
     password: "youshallnotpass"
     sources:
@@ -15,16 +19,31 @@ lavalink:
       local: true
     bufferDurationMs: 400
     frameBufferDurationMs: 5000
-    youtubePlaylistLoadLimit: 6
     playerUpdateInterval: 5
-    youtubeSearchEnabled: true
-    soundcloudSearchEnabled: true
+    timeouts:
+      connectTimeoutMs: 10000
+      connectionRequestTimeoutMs: 10000
+      socketTimeoutMs: 10000
 
 plugins:
-  - dependency: "dev.lavalink.youtube:youtube-plugin:1.13.3"
-    snapshot: false
-  - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.3.0"
-    snapshot: false
+  youtube:
+    enabled: true
+    allowSearch: true
+    allowDirectVideoIds: true
+    allowDirectPlaylistIds: true
+    clients:
+      - MUSIC
+      - ANDROID_VR
+      - WEB
+      - WEBEMBEDDED
+      - TV
+    oauth:
+      enabled: true
+      skipInitialization: true
+    remoteCipher:
+      url: "http://127.0.0.1:8001"
+      # password: set via PLUGINS_YOUTUBE_REMOTECIPHER_PASSWORD (see README)
+      userAgent: "kmusic-bot"
 
 metrics:
   prometheus:

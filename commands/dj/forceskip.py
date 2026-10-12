@@ -6,7 +6,7 @@ from commands.music_command import music_check
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class ForceskipCog(commands.Cog, name="DJ"):
+class ForceskipCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

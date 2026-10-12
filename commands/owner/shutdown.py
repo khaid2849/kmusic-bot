@@ -5,7 +5,7 @@ from commands.owner_command import is_owner
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class ShutdownCog(commands.Cog, name="Owner"):
+class ShutdownCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

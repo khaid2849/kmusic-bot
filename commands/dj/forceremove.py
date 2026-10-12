@@ -7,11 +7,11 @@ from commands.music_command import music_check
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class ForceremoveCog(commands.Cog, name="DJ"):
+class ForceremoveCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="forceremove", aliases=["forcedelete", "modremove"], help="Removes all queue entries from a user")
+    @commands.command(name="forceremove", usage="<user>", aliases=["forcedelete", "modremove"], help="Removes all queue entries from a user")
     @commands.guild_only()
     @is_dj()
     async def forceremove(self, ctx: commands.Context, *, user: discord.Member) -> None:

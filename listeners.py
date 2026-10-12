@@ -40,7 +40,7 @@ class BotListeners(commands.Cog):
             except Exception as e:
                 log.debug(f"Auto-join failed for guild {guild.id}: {e}")
 
-        if self.bot.config.update_alerts:
+        if self.bot.config.update_alerts and not self._version_check.is_running():
             self._version_check.start()
 
         await self.bot.reset_game()

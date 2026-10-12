@@ -10,11 +10,11 @@ if TYPE_CHECKING:
     from bot import MusicBot
 
 
-class SeekCog(commands.Cog, name="Music"):
+class SeekCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="seek", help="Seeks to a position in the current track (e.g. 1:30, +30, -1:00)")
+    @commands.command(name="seek", usage="<time>", help="Seeks to a position in the current track (e.g. 1:30, +30, -1:00)")
     @commands.guild_only()
     async def seek(self, ctx: commands.Context, *, time_str: str = "") -> None:
         if not await music_check(ctx, be_playing=True, be_listening=True):

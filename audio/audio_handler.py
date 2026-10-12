@@ -7,7 +7,7 @@ import wavelink
 
 from audio.queued_track import QueuedTrack
 from audio.request_metadata import RequestMetadata
-from queue.abstract_queue import AbstractQueue
+from trackqueue.abstract_queue import AbstractQueue
 from settings.queue_type import QueueType
 from settings.repeat_mode import RepeatMode
 from utils.format_util import progress_bar, volume_icon, filter_text
@@ -106,11 +106,16 @@ class AudioHandler:
                 self._default_queue.append(track)
 
         async def on_done() -> None:
-            if not playlist.tracks and not self._bot.config.stay_in_channel:
+            if not playlist.tracks and self._leaves_when_done():
                 await self._bot.close_audio_connection(self._guild.id)
 
         await playlist.load_tracks(on_track, on_done)
         return True
+
+    def _leaves_when_done(self) -> bool:
+        # With an idle timeout, IdleHandler decides when to leave instead
+        config = self._bot.config
+        return not config.stay_in_channel and config.idle_time_until_leave <= 0
 
     # ── Track event handlers ─────────────────────────────────────────────────
 
@@ -118,24 +123,25 @@ class AudioHandler:
         self._votes.clear()
         self._bot.nowplaying_handler.on_track_update(track)
 
-    async def on_track_end(self, track: wavelink.Playable, reason: wavelink.TrackEndReason) -> None:
+    async def on_track_end(self, track: wavelink.Playable, reason: str) -> None:
         settings  = self._bot.settings_manager.get_settings(self._guild.id)
         repeat    = settings.repeat_mode
         rm        = getattr(track, "_rm", RequestMetadata.EMPTY)
 
-        if reason == wavelink.TrackEndReason.finished and repeat != RepeatMode.OFF:
+        if reason == "finished" and repeat != RepeatMode.OFF:
             clone = QueuedTrack(track, rm)
             if repeat == RepeatMode.ALL:
                 self._queue.add(clone)
             else:
                 self._queue.add_at(0, clone)
 
-        if reason.may_start_next:
+        may_start_next = reason in ("finished", "loadFailed")
+        if may_start_next:
             if self._queue.is_empty():
                 played = await self.play_from_default()
                 if not played:
                     self._bot.nowplaying_handler.on_track_update(None)
-                    if not self._bot.config.stay_in_channel:
+                    if self._leaves_when_done():
                         await self._bot.close_audio_connection(self._guild.id)
                     if self._player.paused:
                         await self._player.pause(False)

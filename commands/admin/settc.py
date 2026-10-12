@@ -6,11 +6,11 @@ from utils.format_util import list_of_text_channels
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class SettcCog(commands.Cog, name="Admin"):
+class SettcCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="settc", help="Restricts music commands to a specific text channel")
+    @commands.command(name="settc", usage="<channel | NONE>", help="Restricts music commands to a specific text channel")
     @commands.guild_only()
     @is_admin()
     async def settc(self, ctx: commands.Context, *, channel_name: str = "") -> None:

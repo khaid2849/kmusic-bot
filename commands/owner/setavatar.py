@@ -6,11 +6,11 @@ from commands.owner_command import is_owner
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class SetavatarCog(commands.Cog, name="Owner"):
+class SetavatarCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="setavatar", help="Changes the bot's avatar")
+    @commands.command(name="setavatar", usage="<image URL>", help="Changes the bot's avatar")
     @is_owner()
     async def setavatar(self, ctx: commands.Context, url: str = "") -> None:
         if not url and ctx.message.attachments:

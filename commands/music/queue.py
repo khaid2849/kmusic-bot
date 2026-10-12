@@ -38,11 +38,11 @@ class QueueView(discord.ui.View):
         await interaction.response.edit_message(embed=self.pages[self.current], view=self)
 
 
-class QueueCog(commands.Cog, name="Music"):
+class QueueCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="queue", aliases=["list"], help="Shows the current queue")
+    @commands.command(name="queue", usage="[page]", aliases=["list"], help="Shows the current queue")
     @commands.guild_only()
     async def queue(self, ctx: commands.Context, page: int = 1) -> None:
         if not await music_check(ctx):

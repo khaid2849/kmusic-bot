@@ -4,7 +4,7 @@ from discord.ext import commands
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class PingCog(commands.Cog, name="General"):
+class PingCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

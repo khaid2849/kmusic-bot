@@ -1,5 +1,5 @@
 from __future__ import annotations
-from queue.abstract_queue import AbstractQueue, Queueable
+from trackqueue.abstract_queue import AbstractQueue, Queueable
 from typing import TypeVar
 
 T = TypeVar("T", bound=Queueable)

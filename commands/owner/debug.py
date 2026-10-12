@@ -9,7 +9,7 @@ from utils.other_util import get_current_version
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class DebugCog(commands.Cog, name="Owner"):
+class DebugCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

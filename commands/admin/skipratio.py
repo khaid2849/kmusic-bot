@@ -5,11 +5,11 @@ from commands.admin_command import is_admin
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class SkipratioCog(commands.Cog, name="Admin"):
+class SkipratioCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="setskip", aliases=["skipratio"], help="Sets the vote skip ratio (e.g. 55 or 0.55)")
+    @commands.command(name="setskip", usage="<percent | NONE>", aliases=["skipratio"], help="Sets the vote skip ratio (e.g. 55 or 0.55)")
     @commands.guild_only()
     @is_admin()
     async def setskip(self, ctx: commands.Context, *, value: str = "") -> None:

@@ -12,8 +12,8 @@ class QueueType(Enum):
         self.label = label
 
     def create_instance(self, previous=None):
-        from queue.fair_queue import FairQueue
-        from queue.linear_queue import LinearQueue
+        from trackqueue.fair_queue import FairQueue
+        from trackqueue.linear_queue import LinearQueue
         if self == QueueType.FAIR:
             return FairQueue(previous)
         return LinearQueue(previous)

@@ -7,11 +7,11 @@ from utils.format_util import volume_icon
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class VolumeCog(commands.Cog, name="DJ"):
+class VolumeCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="volume", aliases=["vol"], help="Sets the volume (0–150), or shows current volume")
+    @commands.command(name="volume", usage="[0-150]", aliases=["vol"], help="Sets the volume (0–150), or shows current volume")
     @commands.guild_only()
     @is_dj()
     async def volume(self, ctx: commands.Context, level: int = -1) -> None:

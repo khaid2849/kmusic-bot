@@ -7,11 +7,11 @@ from utils.format_util import list_of_roles
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class SetdjCog(commands.Cog, name="Admin"):
+class SetdjCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="setdj", help="Sets the DJ role for this server")
+    @commands.command(name="setdj", usage="<role | NONE>", help="Sets the DJ role for this server")
     @commands.guild_only()
     @is_admin()
     async def setdj(self, ctx: commands.Context, *, role_name: str = "") -> None:

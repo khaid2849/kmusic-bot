@@ -35,6 +35,7 @@ class MusicBot(commands.Bot):
         self.playlist_loader   = None   # set in setup_hook
         self.nowplaying_handler   = None  # set in setup_hook
         self.alone_in_voice_handler = None  # set in setup_hook
+        self.idle_handler           = None  # set in setup_hook
         self._shutting_down = False
 
     async def setup_hook(self) -> None:
@@ -43,12 +44,14 @@ class MusicBot(commands.Bot):
         from playlist.playlist_loader import PlaylistLoader
         from audio.nowplaying_handler import NowplayingHandler
         from audio.alone_in_voice_handler import AloneInVoiceHandler
+        from audio.idle_handler import IdleHandler
 
         self.settings_manager        = SettingsManager()
         self.playlist_loader         = PlaylistLoader(self.config)
         self.player_manager          = PlayerManager(self)
         self.nowplaying_handler      = NowplayingHandler(self)
         self.alone_in_voice_handler  = AloneInVoiceHandler(self)
+        self.idle_handler            = IdleHandler(self)
 
         await self.player_manager.init()
 
@@ -56,11 +59,13 @@ class MusicBot(commands.Bot):
 
         self.nowplaying_handler.init()
         self.alone_in_voice_handler.init()
+        self.idle_handler.init()
 
     async def _load_cogs(self) -> None:
         cogs = [
             "listeners",
             "commands.general.about",
+            "commands.general.help",
             "commands.general.ping",
             "commands.general.settings_cmd",
             "commands.music.play",

@@ -1,0 +1,19 @@
+# systemd user service for the bot. Install: see README "Run as a service".
+# Adjust the paths if you cloned the repo somewhere other than ~/kmusic-bot.
+[Unit]
+Description=kmusic Discord bot
+After=network-online.target kmusic-lavalink.service
+Wants=network-online.target
+Requires=kmusic-lavalink.service
+
+[Service]
+WorkingDirectory=%h/kmusic-bot
+Environment=PYTHONUNBUFFERED=1
+# Wait (up to 90s) for Lavalink to accept connections on :2333
+ExecStartPre=/bin/bash -c 'for i in $(seq 90); do (exec 3<>/dev/tcp/127.0.0.1/2333) 2>/dev/null && exit 0; sleep 1; done; exit 1'
+ExecStart=%h/kmusic-bot/venv/bin/python main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from bot import MusicBot
 
 
-class PlaylistsCog(commands.Cog, name="Music"):
+class PlaylistsCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

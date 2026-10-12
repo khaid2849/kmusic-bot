@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from bot import MusicBot
 
 
-class ShuffleCog(commands.Cog, name="Music"):
+class ShuffleCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

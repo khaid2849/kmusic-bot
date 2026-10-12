@@ -6,11 +6,11 @@ from utils.other_util import parse_game
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class SetgameCog(commands.Cog, name="Owner"):
+class SetgameCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="setgame", help="Changes the bot's activity (e.g. 'playing Music')")
+    @commands.command(name="setgame", usage="<activity>", help="Changes the bot's activity (e.g. 'playing Music')")
     @is_owner()
     async def setgame(self, ctx: commands.Context, *, game: str = "") -> None:
         activity = parse_game(game) if game else None

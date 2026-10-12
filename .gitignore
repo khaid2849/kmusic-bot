@@ -1,0 +1,23 @@
+# Secrets & local state
+config.toml
+serversettings.json
+*.env
+Playlists/
+
+# Lavalink binaries (downloaded separately / by Lavalink itself)
+lavalink/Lavalink.jar
+lavalink/plugins/
+lavalink/logs/
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# Editor / tool settings
+.vscode/
+.idea/
+.claude/

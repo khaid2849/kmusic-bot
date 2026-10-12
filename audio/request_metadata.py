@@ -1,7 +1,7 @@
 from __future__ import annotations
 import re
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, ClassVar
 
 import discord
 
@@ -37,7 +37,7 @@ class RequestMetadata:
     user:         UserInfo | None
     request_info: RequestInfo | None
 
-    EMPTY: "RequestMetadata"  # assigned after class body
+    EMPTY: ClassVar["RequestMetadata"]  # assigned after class body
 
     def get_owner(self) -> int:
         return self.user.id if self.user else 0

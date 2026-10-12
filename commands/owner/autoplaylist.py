@@ -5,11 +5,11 @@ from commands.owner_command import is_owner
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class AutoplaylistCog(commands.Cog, name="Owner"):
+class AutoplaylistCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="autoplaylist", help="Sets the default playlist for this server")
+    @commands.command(name="autoplaylist", usage="<playlist | NONE>", help="Sets the default playlist for this server")
     @commands.guild_only()
     @is_owner()
     async def autoplaylist(self, ctx: commands.Context, *, name: str = "") -> None:

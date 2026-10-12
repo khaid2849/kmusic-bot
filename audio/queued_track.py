@@ -3,7 +3,7 @@ from __future__ import annotations
 import wavelink
 
 from audio.request_metadata import RequestMetadata
-from queue.abstract_queue import Queueable
+from trackqueue.abstract_queue import Queueable
 from utils.time_util import format_time
 
 

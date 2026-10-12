@@ -1,0 +1,17 @@
+# systemd user service for Lavalink. Install: see README "Run as a service".
+# Adjust the paths if you cloned the repo somewhere other than ~/kmusic-bot.
+[Unit]
+Description=Lavalink audio server for kmusic-bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=%h/kmusic-bot/lavalink
+# Optional secrets, e.g. PLUGINS_YOUTUBE_OAUTH_REFRESHTOKEN=... and PLUGINS_YOUTUBE_REMOTECIPHER_PASSWORD=...
+EnvironmentFile=-%h/.config/kmusic/lavalink.env
+ExecStart=/usr/bin/java -Xmx512m -jar Lavalink.jar
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

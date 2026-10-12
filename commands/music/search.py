@@ -55,11 +55,11 @@ class SearchView(discord.ui.View):
         await interaction.response.edit_message(content="Search cancelled.", view=None)
 
 
-class SearchCog(commands.Cog, name="Music"):
+class SearchCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="search", aliases=["ytsearch"], help="Searches YouTube and lets you choose a result")
+    @commands.command(name="search", usage="<query>", aliases=["ytsearch"], help="Searches YouTube and lets you choose a result")
     @commands.guild_only()
     async def search(self, ctx: commands.Context, *, query: str = "") -> None:
         if not await music_check(ctx, be_listening=True):

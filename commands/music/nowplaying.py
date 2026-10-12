@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from bot import MusicBot
 
 
-class NowplayingCog(commands.Cog, name="Music"):
+class NowplayingCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

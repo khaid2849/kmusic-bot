@@ -6,11 +6,11 @@ from utils.format_util import list_of_voice_channels
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class SetvcCog(commands.Cog, name="Admin"):
+class SetvcCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="setvc", help="Restricts the bot to a specific voice channel")
+    @commands.command(name="setvc", usage="<channel | NONE>", help="Restricts the bot to a specific voice channel")
     @commands.guild_only()
     @is_admin()
     async def setvc(self, ctx: commands.Context, *, channel_name: str = "") -> None:

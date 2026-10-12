@@ -6,7 +6,7 @@ from commands.music_command import music_check
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class PauseCog(commands.Cog, name="DJ"):
+class PauseCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

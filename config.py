@@ -27,6 +27,7 @@ max_time = 0
 max_yt_playlist_pages = 10
 skip_ratio = 0.55
 alone_time_until_stop = 0
+idle_time_until_leave = 0
 playlists_folder = "Playlists"
 update_alerts = true
 log_level = "info"
@@ -76,6 +77,7 @@ class BotConfig:
         self.max_yt_playlist_pages: int = 10
         self.skip_ratio: float = 0.55
         self.alone_time_until_stop: int = 0
+        self.idle_time_until_leave: int = 0
         self.playlists_folder: str = "Playlists"
         self.update_alerts: bool = True
         self.log_level: str = "info"
@@ -115,6 +117,7 @@ class BotConfig:
         self.max_yt_playlist_pages = int(data.get("max_yt_playlist_pages", 10))
         self.skip_ratio          = float(data.get("skip_ratio", 0.55))
         self.alone_time_until_stop = int(data.get("alone_time_until_stop", 0))
+        self.idle_time_until_leave = int(data.get("idle_time_until_leave", 0))
         self.playlists_folder    = data.get("playlists_folder", "Playlists")
         self.update_alerts       = bool(data.get("update_alerts", True))
         self.log_level           = data.get("log_level", "info")

@@ -5,7 +5,7 @@ from commands.owner_command import is_owner
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class PlaylistCog(commands.Cog, name="Owner"):
+class PlaylistCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

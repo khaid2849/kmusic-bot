@@ -2,8 +2,8 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import pytest
-from queue.fair_queue import FairQueue
-from queue.abstract_queue import Queueable
+from trackqueue.fair_queue import FairQueue
+from trackqueue.abstract_queue import Queueable
 
 
 class Item(Queueable):

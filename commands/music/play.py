@@ -59,11 +59,11 @@ class PlaylistLoadView(discord.ui.View):
         pass
 
 
-class PlayCog(commands.Cog, name="Music"):
+class PlayCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="play", aliases=[], help="Plays the provided song or URL")
+    @commands.command(name="play", usage="<song or URL>", aliases=[], help="Plays the provided song or URL")
     @commands.guild_only()
     async def play(self, ctx: commands.Context, *, query: str = "") -> None:
         self.play.aliases = self.bot.config.get_aliases("play")
@@ -95,6 +95,12 @@ class PlayCog(commands.Cog, name="Music"):
                 )
             return
 
+        # `play playlist <name>` — load a local playlist
+        if query.lower().startswith("playlist "):
+            name = query[len("playlist "):].strip()
+            await self._play_local_playlist(ctx, name)
+            return
+
         # Strip angle brackets
         if query.startswith("<") and query.endswith(">"):
             query = query[1:-1]
@@ -108,7 +114,7 @@ class PlayCog(commands.Cog, name="Music"):
             return
 
         try:
-            results = await wavelink.Playable.search(query)
+            results = await wavelink.Playable.search(query, source=wavelink.TrackSource.YouTube)
         except Exception as e:
             await loading_msg.edit(content=f"{self.bot.config.error} Error loading: {e}")
             return
@@ -187,9 +193,7 @@ class PlayCog(commands.Cog, name="Music"):
                 text += f"\n{self.bot.config.warning} {skipped} track(s) exceeded max length and were omitted."
             await msg.edit(content=text)
 
-    @commands.command(name="playlist", aliases=["pl"], help="Plays a local playlist")
-    @commands.guild_only()
-    async def play_playlist(self, ctx: commands.Context, *, name: str = "") -> None:
+    async def _play_local_playlist(self, ctx: commands.Context, name: str = "") -> None:
         if not await music_check(ctx, be_listening=True):
             return
         if not name:

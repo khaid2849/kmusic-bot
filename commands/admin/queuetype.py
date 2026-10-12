@@ -6,11 +6,11 @@ from settings.queue_type import QueueType
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class QueuetypeCog(commands.Cog, name="Admin"):
+class QueuetypeCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="queuetype", help="Sets the queue type: fair or linear")
+    @commands.command(name="queuetype", usage="<fair | linear>", help="Sets the queue type: fair or linear")
     @commands.guild_only()
     @is_admin()
     async def queuetype(self, ctx: commands.Context, *, value: str = "") -> None:

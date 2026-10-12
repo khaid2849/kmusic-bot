@@ -5,7 +5,7 @@ from discord.ext import commands
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class SettingsCog(commands.Cog, name="General"):
+class SettingsCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

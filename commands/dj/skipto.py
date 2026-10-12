@@ -6,11 +6,11 @@ from commands.music_command import music_check
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class SkiptoCog(commands.Cog, name="DJ"):
+class SkiptoCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="skipto", aliases=["jumpto"], help="Skips to a position in the queue")
+    @commands.command(name="skipto", usage="<position>", aliases=["jumpto"], help="Skips to a position in the queue")
     @commands.guild_only()
     @is_dj()
     async def skipto(self, ctx: commands.Context, position: int = 0) -> None:

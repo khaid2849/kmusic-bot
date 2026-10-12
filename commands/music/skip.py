@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from bot import MusicBot
 
 
-class SkipCog(commands.Cog, name="Music"):
+class SkipCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 

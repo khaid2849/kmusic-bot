@@ -13,11 +13,11 @@ _STATUS_MAP = {
     "invisible": discord.Status.invisible,
 }
 
-class SetstatusCog(commands.Cog, name="Owner"):
+class SetstatusCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="setstatus", help="Sets the bot's online status (online/idle/dnd/invisible)")
+    @commands.command(name="setstatus", usage="<online | idle | dnd | invisible>", help="Sets the bot's online status (online/idle/dnd/invisible)")
     @is_owner()
     async def setstatus(self, ctx: commands.Context, *, status: str = "") -> None:
         st = _STATUS_MAP.get(status.lower().strip())

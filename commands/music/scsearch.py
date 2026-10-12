@@ -14,11 +14,11 @@ if TYPE_CHECKING:
     from bot import MusicBot
 
 
-class SCSearchCog(commands.Cog, name="Music"):
+class SCSearchCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="scsearch", help="Searches SoundCloud and lets you choose a result")
+    @commands.command(name="scsearch", usage="<query>", help="Searches SoundCloud and lets you choose a result")
     @commands.guild_only()
     async def scsearch(self, ctx: commands.Context, *, query: str = "") -> None:
         if not await music_check(ctx, be_listening=True):

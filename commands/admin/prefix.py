@@ -5,11 +5,11 @@ from commands.admin_command import is_admin
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class PrefixCog(commands.Cog, name="Admin"):
+class PrefixCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="prefix", aliases=["setprefix"], help="Sets the command prefix for this server")
+    @commands.command(name="prefix", usage="<prefix | NONE>", aliases=["setprefix"], help="Sets the command prefix for this server")
     @commands.guild_only()
     @is_admin()
     async def prefix(self, ctx: commands.Context, *, new_prefix: str = "") -> None:

@@ -11,11 +11,11 @@ from utils.time_util import format_time
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class PlaynextCog(commands.Cog, name="DJ"):
+class PlaynextCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="playnext", help="Adds a song to the front of the queue")
+    @commands.command(name="playnext", usage="<song or URL>", help="Adds a song to the front of the queue")
     @commands.guild_only()
     @is_dj()
     async def playnext(self, ctx: commands.Context, *, query: str = "") -> None:

@@ -59,6 +59,10 @@ skip_ratio = 0.55
 # Seconds bot waits alone in voice before leaving (0 = never)
 alone_time_until_stop = 0
 
+# Seconds bot stays in voice while not playing (queue ended or paused) before leaving.
+# 0 = leave as soon as the queue ends (unless stay_in_channel = true). 7200 = 2 hours.
+idle_time_until_leave = 0
+
 # Folder for local playlists
 playlists_folder = "Playlists"
 

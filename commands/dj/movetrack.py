@@ -6,11 +6,11 @@ from commands.music_command import music_check
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class MovetracKCog(commands.Cog, name="DJ"):
+class MovetracKCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="movetrack", aliases=["move"], help="Moves a track from one position to another")
+    @commands.command(name="movetrack", usage="<from> <to>", aliases=["move"], help="Moves a track from one position to another")
     @commands.guild_only()
     @is_dj()
     async def movetrack(self, ctx: commands.Context, from_pos: int = 0, to_pos: int = 0) -> None:

@@ -5,11 +5,11 @@ from commands.owner_command import is_owner
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class SetnameCog(commands.Cog, name="Owner"):
+class SetnameCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
-    @commands.command(name="setname", help="Changes the bot's username")
+    @commands.command(name="setname", usage="<name>", help="Changes the bot's username")
     @is_owner()
     async def setname(self, ctx: commands.Context, *, name: str = "") -> None:
         if not name:

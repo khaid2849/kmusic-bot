@@ -6,7 +6,7 @@ from utils.other_util import get_current_version
 if TYPE_CHECKING:
     from bot import MusicBot
 
-class AboutCog(commands.Cog, name="General"):
+class AboutCog(commands.Cog):
     def __init__(self, bot: "MusicBot"):
         self.bot = bot
 
